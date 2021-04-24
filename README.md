@@ -24,7 +24,7 @@ These instrcutions assume you are working on Ubuntu server as outlined by Nimdy.
 
 1) Follow Nimdy's instuctions for setting up and configuring your Valheim server ( https://github.com/Nimdy/Dedicated_Valheim_Server_Script#readme )
 
-If you did not, enable HTTP when creating the VM you will need to enable it.
+If you did not enable HTTP when creating the VM you will need to enable it.
 
 Per the GCP help file: https://cloud.google.com/vpc/docs/special-configurations
 ```
