@@ -1,8 +1,13 @@
 * {
 
 }
+body {
+  background-color: #222;
+  padding: 2vw;
+}
   .white {
     color: white;
+}
 }
   .list-group {
     max-width: 30vw;
