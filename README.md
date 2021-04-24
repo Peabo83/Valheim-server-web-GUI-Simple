@@ -82,10 +82,10 @@ This will open your sudo file, add the following at the bottom:
 
 ```
 # Valheim web server commands
-www-data ALL = (steam) NOPASSWD: /bin/systemctl restart valheimserver.service
-www-data ALL = (steam) NOPASSWD: /bin/systemctl start valheimserver.service
-www-data ALL = (steam) NOPASSWD: /bin/systemctl stop valheimserver.service
-www-data ALL = (steam) NOPASSWD: /bin/grep Got connection SteamID|Closing socket|has wrong password|Got character ZDOID from|World saved /var/log/syslog
+www-data ALL = (root) NOPASSWD: /bin/systemctl restart valheimserver.service
+www-data ALL = (root) NOPASSWD: /bin/systemctl start valheimserver.service
+www-data ALL = (root) NOPASSWD: /bin/systemctl stop valheimserver.service
+www-data ALL = (root) NOPASSWD: /bin/grep
 ```
 
 Then hit <kbd>CTRL</kbd> + <kbd>X</kbd> to exit VI, you will be prompted to save, so press <kbd>Y</kbd> and then <kbd>Enter</kbd>. VI will then ask where to save a .tmp file, just hit <kbd>Enter</kbd> again. After you save the .tmp visudo will check the file for errors, if there are none it will push the content to the live file automatically.
