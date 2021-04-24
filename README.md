@@ -88,4 +88,4 @@ www-data ALL = (root) NOPASSWD: /bin/systemctl stop valheimserver.service
 www-data ALL = (root) NOPASSWD: /bin/grep
 ```
 
-Then hit <kbd>CTRL</kbd> + <kbd>X</kbd> to exit VI, you will be prompted to save, so press <kbd>Y</kbd> and then <kbd>Enter</kbd>. VI will then ask where to save a .tmp file, just hit <kbd>Enter</kbd> again. After you save the .tmp visudo will check the file for errors, if there are none it will push the content to the live file automatically.
+Then hit <kbd>CTRL</kbd> + <kbd>X</kbd> to exit VI, you will be prompted to save, so press <kbd>Y</kbd>. VI will then ask where to save a .tmp file, just hit <kbd>Enter</kbd> again. After you save the .tmp visudo will check the file for errors, if there are none it will push the content to the live file automatically.
