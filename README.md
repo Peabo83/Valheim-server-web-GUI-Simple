@@ -24,6 +24,20 @@ These instrcutions assume you are working on Ubuntu server as outlined by Nimdy.
 
 1) Follow Nimdy's instuctions for setting up and configuring your Valheim server ( https://github.com/Nimdy/Dedicated_Valheim_Server_Script#readme )
 
+If you did not, enable HTTP when creating the VM you will need to enable it.
+
+Per the GCP help file: https://cloud.google.com/vpc/docs/special-configurations
+```
+If you already have existing default-http and default-https firewall rules, you can apply the firewall rule to existing instances by enabling the Allow HTTP or Allow HTTPS options on the instance's details page.
+
+Go to the VM instances page.
+Click the name of the desired instance.
+Click Edit button at the top of the page.
+Scroll down to the Firewalls section.
+Check the Allow HTTP or Allow HTTPS options under your desired VPC network.
+Click Save.
+```
+
 2) Install PHP and Apache2
 
 ```
@@ -31,8 +45,6 @@ sudo apt install php libapache2-mod-php
 ```
 
 Verify that the install was successful by putting the IP of the server in your web browser. You should see the default Apache2 Ubuntu page. If you have connection issues with this default page, you should verify that HTTP is enabled on the VM.
-
-Note: If you click the little open arrow in the GCP VM management panel next to the server IP it will go to http<b><u>s</u></b>://your-IP, which will not work without further configuration.
 
 3) Remove the default html folder from /var/www/ and then install repository to /var/www/
 
@@ -57,7 +69,7 @@ Now when visting the IP of the server you should see the main GUI screen.
 	$hash = md5($random1.$pass.$random2); 
 	$self = $_SERVER['REQUEST_URI'];
 	$make_seed_public = false;
-  $server_log = true;
+        $server_log = true;
 ```
 Change $username and $password to your preffered values. Change $random1 and $random2 to any variables of your choice, like 'Valheim365' and 'OdinRules'.
 
