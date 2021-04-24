@@ -13,5 +13,5 @@
 	$server_log = true;
 
 	// Hits ipecho.net to get the VM's actual IP
-    $realIP = file_get_contents("http://ipecho.net/plain");
+    	$realIP = file_get_contents("http://ipecho.net/plain");
 ?>
