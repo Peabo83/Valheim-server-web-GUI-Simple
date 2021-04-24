@@ -150,7 +150,11 @@ if (file_exists("/var/www/html/download/".$world.".fwl")) {
     $text_row = '8';
   }
 } else {
-  $seed = "<button class=\"btn btn-xs btn-success\" onclick=\"location.href='index.php?seed=true';\">Get Seed</button>";
+  if ($world = "<span class='glyphicon glyphicon-remove red'></span>") {
+    $seed = "<span class='glyphicon glyphicon-remove red'></span>";
+  } else {
+    $seed = "<button class=\"btn btn-xs btn-success\" onclick=\"location.href='index.php?seed=true';\">Get Seed</button>";
+  }
   $has_seed = false;
   $text_row = '8';
 }
@@ -162,20 +166,6 @@ if(isset($_GET['logout'])) {
   header("Location: $_SERVER[PHP_SELF]");
   exit;
 }
-
-// ********** Form has been submitted ********** //
-      if (isset($_POST['submit'])) {
-        if ($_POST['username'] == $username && $_POST['password'] == $password){
-          // If username and password correct, log in
-          $_SESSION["login"] = $hash;
-          header("Location: $_SERVER[PHP_SELF]");    
-        } else {      
-          // Display error on bad login
-          display_login_form();
-          echo '<div class="alert alert-danger">Incorrect login information.</div>';
-          exit;
-        }
-      }
 ?>
 <html>
   <head>
@@ -183,15 +173,16 @@ if(isset($_GET['logout'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/addon/lint/lint.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/addon/dialog/dialog.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="custom.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(function() {
+        $(".server-function").click(function() {
+          $("#loading-background").removeClass("hidden");
+        });
+      });
+    </script>
 </head>
 <body style="background-color: #222; padding: 2vw;">
   <div class="wrapper">
@@ -223,6 +214,21 @@ if(isset($_GET['logout'])) {
     </div>
     <!-- End Server information display -->
     <?php
+
+    // ********** Form has been submitted ********** //
+      if (isset($_POST['submit'])) {
+        if ($_POST['username'] == $username && $_POST['password'] == $password){
+          // If username and password correct, log in
+          $_SESSION["login"] = $hash;
+          header("Location: $_SERVER[PHP_SELF]");    
+        } else {      
+          // Display error on bad login
+          display_login_form();
+          echo '<div class="alert alert-danger">Incorrect login information.</div>';
+          exit;
+        }
+      }
+
     if (isset($_SESSION['login']) && $_SESSION['login'] == $hash) {
     // *************************************** //
     // ********** Logged In Content ********** //
@@ -235,7 +241,7 @@ if(isset($_GET['logout'])) {
     if ($version == $latest_version) {
       // DO NOTHING
     } else {
-      echo "<div class='row alert alert-danger' role='alert'><div class='col-12'><span class='glyphicon glyphicon-warning-sign'></span> Your version of this GUI is out out of date. (current version: ".$version." - latest version:<a href='https://github.com/Peabo83/Valheim-Server-Web-GUI'>".$latest_version."</a>)</div></div>";
+      echo "<div class='row alert alert-danger' role='alert'><div class='col-12'><span class='glyphicon glyphicon-warning-sign'></span> Your version of this GUI is out out of date. (current version: ".$version." - latest version:<a href='https://github.com/Peabo83/Valheim-server-web-GUI-Simple'>".$latest_version."</a>)</div></div>";
     }
     // End Version Control
     ?>
@@ -272,7 +278,7 @@ if(isset($_GET['logout'])) {
               <div id="serverlogbody" class="panel-collapse collapse" role="logpanel" aria-labelledby="serverlogs">
                 <div class="panel-body">
                   <?php
-                    $log = shell_exec('sudo grep "Got connection SteamID\|Closing socket\|has wrong password\|Got character ZDOID from\|World saved" /var/log/syslog');
+                    $log = shell_exec('sudo grep "Got connection SteamID\|Closing socket\|has wrong password\|Got character ZDOID from\|World saved\|- Completed reload, in\|Valheim Server.\|has incompatible version,\|is blacklisted or not in whitelist" /var/log/syslog');
                     $log_array = explode("\n", $log);
                     foreach ($log_array as $key => $value) {
                       echo $value . "<br>";
