@@ -15,9 +15,9 @@ Simple no database login from https://gist.github.com/thagxt/94b976db4c8f14ec152
 This would not work without https://github.com/Nimdy/Dedicated_Valheim_Server_Script
 
 ## Screenshots
-![alt text](https://i.imgur.com/sDE7T2x.jpg)<br>
+![alt text](https://i.imgur.com/wwmZNAx.jpg)<br>
 <br>
-![alt text](https://i.imgur.com/ELlf5TM.jpg)<br>
+![alt text](https://i.imgur.com/Bgi12YX.jpg)<br>
 
 ## Install instructions
 These instrcutions assume you are working on Ubuntu server as outlined by Nimdy.
