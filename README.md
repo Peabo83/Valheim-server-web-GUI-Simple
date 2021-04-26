@@ -46,13 +46,15 @@ sudo apt install php libapache2-mod-php
 
 Verify that the install was successful by putting the IP of the server in your web browser. You should see the default Apache2 Ubuntu page. If you have connection issues with this default page, you should verify that HTTP is enabled on the VM.
 
-3) Remove the default html folder from /var/www/ and then install repository to /var/www/
+3) Remove the default html folder from /var/www/ and then install repository to /var/www/ then set appropriate permissions.
 
 ```
 sudo rm -R /var/www/
 cd ~
 git clone https://github.com/Peabo83/Valheim-Server-Web-GUI.git
 sudo cp -R ~/Valheim-Server-Web-GUI/www/ /var/
+sudo chown -R www-data /var/www/
+sudo chown -R :www-data /var/www/
 ```
 
 Now when visting the IP of the server you should see the main GUI screen.
