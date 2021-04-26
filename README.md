@@ -1,4 +1,4 @@
-# Valheim-Server-Web-GUI-Simple (V1.01 4/24/2021)
+# Valheim-Server-Web-GUI-Simple (V1.01 4/25/2021)
 
 ## Features
 - Web page that publicly shows the status of valheimserver.service
