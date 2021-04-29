@@ -91,3 +91,44 @@ www-data ALL = (root) NOPASSWD: /bin/grep
 ```
 
 Then hit <kbd>CTRL</kbd> + <kbd>X</kbd> to exit VI, you will be prompted to save, so press <kbd>Y</kbd>. VI will then ask where to save a .tmp file, just hit <kbd>Enter</kbd> again. After you save the .tmp visudo will check the file for errors, if there are none it will push the content to the live file automatically.
+
+
+-----------------
+Notes for updating<br>
+
+##Hide Apache Version and Operating System
+/etc/apache2/conf-enabled/security.conf
+
+added
+
+ServerSignature Off 
+ServerTokens Prod
+
+##Disable Directory Listing and FollowSymLinks
+
+/etc/apache2/apache2.conf
+
+EDIT - add the "-" in options
+
+<Directory /var/www/>
+        Options -Indexes -FollowSymLinks
+        AllowOverride None
+        Require all granted
+</Directory>
+
+Also to Disable TRACE HTTP Request ADD:
+
+TraceEnable off
+
+
+##mod_security and mod_evasive
+
+sudo apt install libapache2-mod-security2 -y
+sudo systemctl restart apache2
+
+sudo apt install libapache2-mod-evasive -y
+sudo systemctl restart apache2
+
+
+
+
