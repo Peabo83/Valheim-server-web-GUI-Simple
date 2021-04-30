@@ -129,6 +129,24 @@ sudo systemctl restart apache2
 sudo apt install libapache2-mod-evasive -y
 sudo systemctl restart apache2
 
+##Setup HTTPS
 
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+
+-Enter Info
+
+sudo vi /etc/apache2/conf-available/ssl-params.conf
+
+Enter:
+
+SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
+SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
+SSLHonorCipherOrder On
+Header always set X-Frame-Options DENY
+Header always set X-Content-Type-Options nosniff
+SSLCompression off
+SSLUseStapling on
+SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
+SSLSessionTickets Off
 
 
