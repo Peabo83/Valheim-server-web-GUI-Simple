@@ -97,7 +97,7 @@ Then hit <kbd>CTRL</kbd> + <kbd>X</kbd> to exit VI, you will be prompted to save
 Notes for updating<br>
 
 ##Hide Apache Version and Operating System
-/etc/apache2/conf-enabled/security.conf
+/etc/apache2/apache2.conf
 
 added
 
