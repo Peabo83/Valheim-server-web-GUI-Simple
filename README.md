@@ -149,4 +149,9 @@ SSLUseStapling on
 SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 SSLSessionTickets Off
 
-
+## Changelog
+### 1.02
+- Added CSP headers for additional security
+- jquery library moved to inside this repo. This was done because when the CSP rule "require-trusted-types-for 'script';" it breaks the functionality of the jquery library, specifically the use of ".innerHTML". The included jquery library has added checks and sanitations on all of its uses of .innerHTML.
+- Added placeholder values to the username and input fields
+- 
